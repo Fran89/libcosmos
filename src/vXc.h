@@ -2,6 +2,9 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>
+ #include <memory.h>
+ #include <math.h>
+
  #include "vc_defs.h"
 
 
@@ -157,7 +160,7 @@
 
  } VXCRecord;
  
- extern VXCRecord* vXc_init(VXCRecord *vXc);
+ extern VXCRecord* vXc_init(VXCRecord* );
  extern void  vXc_setEqName(VXCRecord* ,char*);
  extern void  vXc_setEqInfo(VXCRecord* , int, int, int, int, int, double, int, char*);
  extern void  vXc_setEqMgAz(VXCRecord* , int, int, int, double, double, double, double, double);
@@ -167,8 +170,10 @@
  extern void  vXc_setRecInf(VXCRecord* , char* ,  int, int, char*);
  extern void  vXc_setRecoID(VXCRecord* , char*);
  extern void  vXc_setRecTim(VXCRecord* , int , int , int , int , int , double , int );
- extern char* vXc_build(VXCRecord *vXc);
- extern void  vXc_print(VXCRecord *vXc);
- extern void  vXc_free(VXCRecord **ppvXc);
+ extern void  vXc_setChanIn(VXCRecord* , int, int, int, char*);
+ extern void vXc_setTiming(VXCRecord* vXc, double sampint, double tslength);
+ extern char* vXc_build(VXCRecord * );
+ extern void  vXc_print(VXCRecord * );
+ extern void  vXc_free(VXCRecord ** );
  
- extern void  v0c_create(VXCRecord *vXc, char* Agency);
+ extern void  v0c_create(VXCRecord *, char*);

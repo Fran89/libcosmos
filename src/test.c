@@ -4,10 +4,24 @@ int main()
 {
   int verbose = 0;
   char *v0cfile = "output.v0c";
-  int datasamples[] = {0,1,2,3,4,5,6,7,8,9,10};
+  int32_t datasamples[] = {0,1,2,3,4,5,6,7,8,9,
+                       0,1,2,3,4,5,6,7,8,9,
+                       0,1,2,3,4,5,6,7,8,9,
+                       0,1,2,3,4,5,6,7,8,9,
+                       0,1,2,3,4,5,6,7,8,9,
+                       0,1,2,3,4,5,6,7,8,9,
+                       0,1,2,3,4,5,6,7,8,9,
+                       0,1,2,3,4,5,6,7,8,9,
+                       0,1,2,3,4,5,6,7,8,9,
+                       0,1,2,3,4,5,6,7,8,9
+                      };
   VXCRecord *v0cr;
   
   v0cr = vXc_init(NULL);
+
+  v0cr->datasamples = datasamples;
+  v0cr->datasize = sizeof(datasamples)/sizeof(datasamples[0]);
+;
   
   // Create v0c file with origin "Test.evt" **Req**
   v0c_create(v0cr, "Test.evt");
@@ -32,15 +46,14 @@ int main()
   // Set Record ID **Req**
   vXc_setRecoID(v0cr, "24236-F0900-94017.04");
   vXc_setRecTim(v0cr, 1994, 01, 17, 12, 30, 52.900, 2);
-  
-  
+  vXc_setChanIn(v0cr, 1, 360, 4, "8th Floor : Center");
+
+  // Set Timing Info **Req**
+  vXc_setTiming(v0cr, 10 , 1000);
+
   vXc_print(v0cr);
   
-  //msr->formatversion = 3;
-  //msr->reclen = 512;
-  //msr->encoding = DE_STEIM2;
-  //msr->starttime = ms_timestr2nstime ("2018-12-01T00:00:00.000000000");
-  //msr->samprate = 20.0;
+
   //msr->datasamples = datasamples;  /* pointer to 32-bit integer data samples */
   //msr->numsamples = 11;
   //msr->sampletype = 'i';  /* declare data type to be 32-bit integers */
