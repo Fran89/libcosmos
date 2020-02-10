@@ -1,6 +1,7 @@
+#include <stdio.h>
 #include "vXc.h"
-
 int main()
+
 {
   int verbose = 0;
   char *v0cfile = "output.v0c";
@@ -13,18 +14,18 @@ int main()
                        0,1,2,3,4,5,6,7,8,9,
                        0,1,2,3,4,5,6,7,8,9,
                        0,1,2,3,4,5,6,7,8,9,
-                       0,1,2,3,4,5,6,7,8,9
+                       0,1,2,3,4
                       };
   VXCRecord *v0cr;
-  
+
   v0cr = vXc_init(NULL);
 
   v0cr->datasamples = datasamples;
   v0cr->datasize = sizeof(datasamples)/sizeof(datasamples[0]);
-  
+
   // Create v0c file with origin "Test.evt" **Req**
   v0c_create(v0cr, "Test.evt");
-  
+
   /* Populate v0crRecord values */
   // Set Eq & Origin name **Req**
   vXc_setEqName(v0cr, "Northridge Earthquake");
@@ -39,7 +40,7 @@ int main()
   vXc_setStaInf(v0cr, 01, 24236, "CE", "J236", "CDMG", 10, "Los Angeles - Hollywood Storage Bldg");
   // Set Station Info **Req**
   vXc_setStaLoc(v0cr, 24.09, -118.3390, -999.0, -999.0, 1, "Shallow Alluvium over Granite");
-  
+
   // Set Recorder & Sensor Info **Req**
   vXc_setRecInf(v0cr, "SSA-2 s/n 908",  3, 12, "FBA-11 s/n 123456");
   // Set Record ID **Req**
@@ -51,7 +52,7 @@ int main()
   vXc_setTiming(v0cr, 10 , 1000);
 
   vXc_print(v0cr);
-  
+
 
   //msr->datasamples = datasamples;  /* pointer to 32-bit integer data samples */
   //msr->numsamples = 11;

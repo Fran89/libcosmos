@@ -458,16 +458,13 @@ char* vXc_buildDTHD(VXCRecord* vXc) {
                 );
         strcat(DTHD, line1);
 
-        int32_t *data;
-
-        data = ((int32_t*) (vXc->datasamples));
+        int32_t *data = ((int32_t*) (vXc->datasamples));
 
         int j = 0;
         for (int i = 0; i < sz; i++){
             char *linetmp = (char*)malloc(100 * sizeof(char));
             for (j= i*10; j < (i+1)*10; j++){
-                int x = data;
-                sprintf(line1, "%8i", x);
+                sprintf(line1, "%8i", data[j]);
                 strcat(linetmp,line1);
             }
             strcat(linetmp, "\n");
@@ -478,7 +475,7 @@ char* vXc_buildDTHD(VXCRecord* vXc) {
             char *linetmp = (char*)malloc(100 * sizeof(char));
             for (int i=(j); i <(j+rm); i++){
 
-                sprintf(line1, "%8i", i);
+                sprintf(line1, "%8i",data[i]);
                 strcat(linetmp,line1);
             }
             strcat(linetmp, "\n");
